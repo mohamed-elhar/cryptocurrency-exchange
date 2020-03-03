@@ -20,9 +20,35 @@ public class Customer {
 
     public Customer(int balance){
         this.balance = balance;
+        this.bitcoin = "";
     }
+
     
-    public Customer withCryptocurrency(String bitcoin, int i) {
+    public String getBitcoin() {
+		return bitcoin;
+	}
+
+	public void setBitcoin(String bitcoin) {
+		this.bitcoin = bitcoin;
+	}
+
+	public int getI() {
+		return i;
+	}
+
+	public void setI(int i) {
+		this.i = i;
+	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
+	public Customer withCryptocurrency(String bitcoin, int i) {
         return new Customer(bitcoin, i, this.balance);
     }
 
@@ -33,6 +59,9 @@ public class Customer {
     @Override
     public String toString() {
     	LOGGER.info("******** "+balance+":$,"+i+":"+bitcoin+"***********");
-        return balance+":$,"+i+":"+bitcoin;
+    	if(bitcoin == "")
+    		return balance+":$";
+    	else
+    		return balance+":$,"+i+":"+bitcoin;
     }
 }
